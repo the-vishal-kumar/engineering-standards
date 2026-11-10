@@ -94,7 +94,7 @@ I lead a 20-engineer organization. These outcomes are from my resume. They came 
 
 | Outcome | Practices behind it | In this repo |
 |---|---|---|
-| PR cycle time from ~3 days to ~1 day | Automated CI quality gates, static analysis, AI-assisted code review | `quality-gate.yml`, `code-review-guide.md` |
+| PR cycle time from ~3 days to 1 day | Automated CI quality gates, static analysis, AI-assisted code review | `quality-gate.yml`, `code-review-guide.md` |
 | Production defect leakage down 35% | Automated testing standards, release-readiness criteria | Coverage gate, `release-readiness-checklist.md`, Definition of Done |
 | Sprint delivery predictability from 60% to 85% | Engineering-led requirement validation, structured backlog refinement | `definition-of-ready-and-done.md`, feature request form |
 | Organization-wide release governance and observability standards | Shared release and operational standards | Release checklist, on-call runbook, postmortem template |
