@@ -47,7 +47,7 @@ From any repository, call the workflow and pass your own commands:
 ```yaml
 jobs:
   quality-gate:
-    uses: the-vishal-kumar/engineering-standards/.github/workflows/quality-gate.yml@main
+    uses: the-vishal-kumar/engineering-standards/.github/workflows/quality-gate.yml@v1
     with:
       python-version: "3.12"
       install-command: pip install -r requirements.txt -r requirements-dev.txt
@@ -60,7 +60,7 @@ jobs:
 
 Inputs: `working-directory`, `node-version` / `python-version` / `go-version` (each optional), `install-command`, `lint-command`, `test-command`, `coverage-file` (LCOV or Cobertura XML), `coverage-threshold`, `audit-command`, `secret-scan`. Empty inputs skip that step. See [`ci.yml`](.github/workflows/ci.yml) for the Node example.
 
-Pin to a tag or a commit SHA rather than `@main` once you depend on it. Then add `quality-gate` as a required status check in branch protection. Without that, the gate is advice.
+Pin to a release tag (`@v1`) or a commit SHA, never `@main`. Then add `quality-gate` as a required status check in branch protection. Without that, the gate is advice.
 
 ## Adopting it incrementally
 
