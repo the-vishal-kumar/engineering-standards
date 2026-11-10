@@ -1,0 +1,24 @@
+# CODEOWNERS example. Uncomment and replace the placeholders.
+# GitHub requests review from the owners of every path a PR touches.
+# The last matching pattern wins, so put broad rules first.
+# Docs: https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners
+#
+# Keep owners as teams, not individuals, so reviews do not stall on one
+# person's holiday. Pair this file with a branch rule that requires
+# code-owner review only on the paths listed below the default.
+
+# Default: the owning team reviews everything.
+# *                       @your-org/service-team
+
+# CI and quality gates: changes here affect every repo that calls them.
+# /.github/workflows/      @your-org/platform-team
+
+# Infrastructure and secrets handling.
+# /infra/                  @your-org/platform-team
+# /deploy/                 @your-org/platform-team
+
+# Database migrations need a second pair of eyes for locking and rollback.
+# /migrations/             @your-org/service-team @your-org/data-reviewers
+
+# Standards and runbooks.
+# /docs/                   @your-org/engineering-leads

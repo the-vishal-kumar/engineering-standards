@@ -1,0 +1,53 @@
+name: Bug report
+description: Something is broken or behaves differently from what was expected.
+labels: ["bug", "needs-triage"]
+body:
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened
+      description: What you saw, and what you expected instead.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Steps to reproduce
+      placeholder: |
+        1. ...
+        2. ...
+        3. ...
+    validations:
+      required: true
+  - type: dropdown
+    id: impact
+    attributes:
+      label: Impact
+      options:
+        - "S1: outage or data loss, no workaround"
+        - "S2: major feature broken, workaround exists"
+        - "S3: minor feature broken or degraded"
+        - "S4: cosmetic"
+    validations:
+      required: true
+  - type: input
+    id: environment
+    attributes:
+      label: Environment
+      description: Service, version or commit, environment (prod, staging), browser or client if relevant.
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Logs, traces or screenshots
+      description: Remove secrets and personal data before pasting.
+      render: shell
+  - type: dropdown
+    id: escaped
+    attributes:
+      label: Was this found in production?
+      description: Used to track defect leakage. See docs/metrics.md.
+      options:
+        - "Yes, found in production"
+        - "No, found before release"
+    validations:
+      required: true

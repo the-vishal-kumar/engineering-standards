@@ -1,0 +1,169 @@
+# Reusable CI quality gate.
+#
+# Language-agnostic: the caller supplies the commands, this workflow supplies
+# the order, the thresholds and the secret scan. Call it from any repo:
+#
+#   jobs:
+#     quality-gate:
+#       uses: <owner>/engineering-standards/.github/workflows/quality-gate.yml@v1
+#       with:
+#         node-version: "22"
+#         install-command: npm ci
+#         lint-command: npm run lint
+#         test-command: npm test
+#         coverage-file: coverage/lcov.info
+#         coverage-threshold: 80
+#         audit-command: npm audit --audit-level=high
+#
+# See README.md for why each gate exists.
+
+name: quality-gate
+
+on:
+  workflow_call:
+    inputs:
+      working-directory:
+        description: Directory the commands run in.
+        type: string
+        default: "."
+      node-version:
+        description: Set to install Node.js (e.g. "22"). Leave empty to skip.
+        type: string
+        default: ""
+      python-version:
+        description: Set to install Python (e.g. "3.12"). Leave empty to skip.
+        type: string
+        default: ""
+      go-version:
+        description: Set to install Go (e.g. "1.23"). Leave empty to skip.
+        type: string
+        default: ""
+      install-command:
+        description: Installs dependencies from a lockfile (npm ci, pip install -r requirements.txt, go mod download).
+        type: string
+        default: ""
+      lint-command:
+        description: Static analysis and formatting check. Must exit non-zero on findings.
+        type: string
+        default: ""
+      test-command:
+        description: Runs the test suite and writes a coverage report.
+        type: string
+        default: ""
+      coverage-file:
+        description: Coverage report path, relative to working-directory. LCOV (*.info) or Cobertura XML (*.xml).
+        type: string
+        default: ""
+      coverage-threshold:
+        description: Minimum line coverage in percent. 0 disables the check.
+        type: number
+        default: 80
+      audit-command:
+        description: Dependency vulnerability audit (npm audit --audit-level=high, pip-audit, govulncheck ./...).
+        type: string
+        default: ""
+      secret-scan:
+        description: Run gitleaks over the full git history.
+        type: boolean
+        default: true
+
+permissions:
+  contents: read
+
+jobs:
+  checks:
+    name: lint, test, coverage, audit
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    defaults:
+      run:
+        shell: bash
+        working-directory: ${{ inputs.working-directory }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - if: inputs.node-version != ''
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ inputs.node-version }}
+
+      - if: inputs.python-version != ''
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ inputs.python-version }}
+
+      - if: inputs.go-version != ''
+        uses: actions/setup-go@v5
+        with:
+          go-version: ${{ inputs.go-version }}
+
+      - name: Install
+        if: inputs.install-command != ''
+        env:
+          CMD: ${{ inputs.install-command }}
+        run: eval "$CMD"
+
+      - name: Lint
+        if: inputs.lint-command != ''
+        env:
+          CMD: ${{ inputs.lint-command }}
+        run: eval "$CMD"
+
+      - name: Test
+        if: inputs.test-command != ''
+        env:
+          CMD: ${{ inputs.test-command }}
+        run: eval "$CMD"
+
+      - name: Coverage threshold
+        if: inputs.coverage-file != '' && inputs.coverage-threshold > 0
+        env:
+          COVERAGE_FILE: ${{ inputs.coverage-file }}
+          THRESHOLD: ${{ inputs.coverage-threshold }}
+        run: |
+          python3 - <<'PY'
+          import os, sys, xml.etree.ElementTree as ET
+
+          path = os.environ["COVERAGE_FILE"]
+          threshold = float(os.environ["THRESHOLD"])
+          if not os.path.exists(path):
+              sys.exit(f"Coverage file not found: {path}")
+
+          if path.endswith(".xml"):  # Cobertura
+              pct = float(ET.parse(path).getroot().get("line-rate", 0)) * 100
+          else:  # LCOV: sum lines hit / lines found across all files
+              found = hit = 0
+              with open(path) as f:
+                  for line in f:
+                      if line.startswith("LF:"):
+                          found += int(line[3:])
+                      elif line.startswith("LH:"):
+                          hit += int(line[3:])
+              pct = 100.0 * hit / found if found else 0.0
+
+          print(f"Line coverage: {pct:.1f}% (threshold {threshold:.0f}%)")
+          with open(os.environ["GITHUB_STEP_SUMMARY"], "a") as s:
+              s.write(f"**Line coverage:** {pct:.1f}% (threshold {threshold:.0f}%)\n")
+          if pct < threshold:
+              sys.exit(f"Coverage {pct:.1f}% is below the {threshold:.0f}% threshold")
+          PY
+
+      - name: Dependency audit
+        if: inputs.audit-command != ''
+        env:
+          CMD: ${{ inputs.audit-command }}
+        run: eval "$CMD"
+
+  secret-scan:
+    name: secret scan (gitleaks)
+    if: inputs.secret-scan
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # scan every commit, not just the tip
+      - name: gitleaks
+        run: |
+          docker run --rm -v "$PWD:/repo" ghcr.io/gitleaks/gitleaks:v8.21.2 \
+            git /repo --redact --verbose --exit-code 1

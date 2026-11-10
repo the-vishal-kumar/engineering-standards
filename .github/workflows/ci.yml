@@ -1,0 +1,29 @@
+# Example caller: runs the reusable quality gate against the Node sample in
+# examples/node-service. Copy this file into your repo and change the inputs.
+
+name: ci
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  node-example:
+    uses: ./.github/workflows/quality-gate.yml
+    with:
+      working-directory: examples/node-service
+      node-version: "22"
+      install-command: npm ci
+      lint-command: npm run lint
+      test-command: npm test
+      coverage-file: coverage/lcov.info
+      coverage-threshold: 80
+      audit-command: npm audit --audit-level=high
