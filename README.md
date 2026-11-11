@@ -24,43 +24,43 @@ A starter kit of engineering standards for a product engineering organisation: a
 
 ### Deliver
 
-| File | What it is |
+| Document | What it is |
 |---|---|
-| [`docs/definition-of-ready-and-done.md`](docs/definition-of-ready-and-done.md) | Entry and exit criteria for sprint work |
-| [`docs/code-review-guide.md`](docs/code-review-guide.md) | Review service levels, what to look for, comment labels |
-| [`.github/pull_request_template.md`](.github/pull_request_template.md) | PR template focused on risk, rollout and how to review |
-| [`.github/ISSUE_TEMPLATE/`](.github/ISSUE_TEMPLATE) | Bug report form (with the field that feeds defect leakage) and feature request form |
-| [`.github/CODEOWNERS`](.github/CODEOWNERS) | Commented example of team-based ownership |
-| [`docs/release-readiness-checklist.md`](docs/release-readiness-checklist.md) | Go/no-go list for higher-risk releases |
+| [Definition of Ready and Done](docs/definition-of-ready-and-done.md) | Entry and exit criteria for sprint work |
+| [Code review guide](docs/code-review-guide.md) | Review service levels, what to look for, comment labels |
+| [PR template](.github/pull_request_template.md) | PR template focused on risk, rollout and how to review |
+| [Issue forms](.github/ISSUE_TEMPLATE) | Bug report form (with the field that feeds defect leakage) and feature request form |
+| [CODEOWNERS](.github/CODEOWNERS) | Commented example of team-based ownership |
+| [Release readiness checklist](docs/release-readiness-checklist.md) | Go/no-go list for higher-risk releases |
 
 ### Automate
 
-| File | What it is |
+| Document | What it is |
 |---|---|
-| [`.github/workflows/quality-gate.yml`](.github/workflows/quality-gate.yml) | Reusable CI workflow: lint, test, coverage threshold, dependency audit, secret scan (gitleaks). Language-agnostic |
-| [`.github/workflows/ci.yml`](.github/workflows/ci.yml) | Example caller that runs the gate on the Node example, plus actionlint |
-| [`.github/dependabot.yml`](.github/dependabot.yml) | Weekly updates for Actions and npm dependencies |
-| [`examples/node-service/`](examples/node-service) | Node 22 project the gate runs against, including a CLI that computes PR cycle time from `gh` output |
+| [Quality gate workflow](.github/workflows/quality-gate.yml) | Reusable CI workflow: lint, test, coverage threshold, dependency audit, secret scan (gitleaks). Language-agnostic |
+| [Example CI caller](.github/workflows/ci.yml) | Example caller that runs the gate on the Node example, plus actionlint |
+| [Dependabot config](.github/dependabot.yml) | Weekly updates for Actions and npm dependencies |
+| [Node example](examples/node-service) | Node 22 project the gate runs against, including a CLI that computes PR cycle time from `gh` output |
 
 ### Operate and recover
 
-| File | What it is |
+| Document | What it is |
 |---|---|
-| [`docs/runbooks/on-call.md`](docs/runbooks/on-call.md) | On-call runbook skeleton: severities, roles, first five minutes, per-alert entries |
-| [`docs/postmortem-template.md`](docs/postmortem-template.md) | Blameless incident postmortem |
-| [`docs/runbooks/disaster-recovery.md`](docs/runbooks/disaster-recovery.md) | DR outline with RPO/RTO tiers, recovery procedure structure and test log |
-| [`docs/security-baseline.md`](docs/security-baseline.md) | Minimum security controls, the evidence for each, and rough SOC 2 / ISO 27001 pointers |
-| [`SECURITY.md`](SECURITY.md) | Vulnerability reporting policy, usable as a template |
+| [On-call runbook](docs/runbooks/on-call.md) | On-call runbook skeleton: severities, roles, first five minutes, per-alert entries |
+| [Postmortem template](docs/postmortem-template.md) | Blameless incident postmortem |
+| [DR runbook](docs/runbooks/disaster-recovery.md) | DR outline with RPO/RTO tiers, recovery procedure structure and test log |
+| [Security baseline](docs/security-baseline.md) | Minimum security controls, the evidence for each, and rough SOC 2 / ISO 27001 pointers |
+| [SECURITY.md](SECURITY.md) | Vulnerability reporting policy, usable as a template |
 
 ### Decide, measure and grow
 
-| File | What it is |
+| Document | What it is |
 |---|---|
-| [`docs/rfc/`](docs/rfc/README.md) | When to write an RFC or an ADR, the review process, and an RFC template |
-| [`docs/adr/`](docs/adr) | ADR template and one example ADR |
-| [`docs/metrics.md`](docs/metrics.md) | DORA and team metrics: definitions, how to measure each, measurement rules |
-| [`docs/tech-debt-register.md`](docs/tech-debt-register.md) | Register fields, scoring, a worked example and the review routine |
-| [`docs/hiring.md`](docs/hiring.md) | Structured interview loop, competencies, scorecard, debrief rules and funnel metrics |
+| [RFC and ADR process](docs/rfc/README.md) | When to write an RFC or an ADR, the review process, and an RFC template |
+| [ADR template and example](docs/adr) | ADR template and one example ADR |
+| [Metrics](docs/metrics.md) | DORA and team metrics: definitions, how to measure each, measurement rules |
+| [Tech debt register](docs/tech-debt-register.md) | Register fields, scoring, a worked example and the review routine |
+| [Hiring loop and scorecard](docs/hiring.md) | Structured interview loop, competencies, scorecard, debrief rules and funnel metrics |
 
 ## Week 1 adoption
 
