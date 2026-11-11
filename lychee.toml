@@ -1,0 +1,10 @@
+# Link checker config. Run with `scripts/check-docs.sh links`.
+include_fragments = "full"
+max_retries = 3
+retry_wait_time = 5
+timeout = 30
+accept = ["200..=299", "429"]
+exclude_path = ["(^|/)node_modules/"]
+# The repository's own Actions pages and badges: they 404 for anonymous
+# requests while the repository is private, and GitHub serves them itself.
+exclude = ['^https://github\.com/the-vishal-kumar/[^/]+/actions/']
