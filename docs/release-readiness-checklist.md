@@ -13,7 +13,7 @@ Small, flag-guarded changes that ship through the normal pipeline do not need th
 ## 2. Quality
 
 - [ ] CI quality gate is green on the release commit
-- [ ] No open S1 or S2 bugs against the release
+- [ ] No open S1 or S2 bugs against the release (bug impact levels from the [bug report form](../.github/ISSUE_TEMPLATE/bug_report.yml); incident severities SEV1–SEV3 are defined in the [on-call runbook](runbooks/on-call.md))
 - [ ] New code paths have tests for the success and the failure case
 - [ ] Tested in staging with production-like data volume where performance matters
 

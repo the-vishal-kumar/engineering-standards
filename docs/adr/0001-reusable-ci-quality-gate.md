@@ -37,8 +37,8 @@ We already had that, and it is what drifted. Without a central definition, raisi
 - Repositories with unusual toolchains may need a new input. That is a deliberate cost: it forces the conversation about whether the exception is needed.
 - The coverage threshold is a floor, not a target. We review it each quarter and do not raise it for its own sake.
 
-## Follow-ups
+## Conditions of the decision
 
-- [ ] Tag `v1` and move all active repositories to it.
-- [ ] Turn on required status checks for `quality-gate` in branch protection.
-- [ ] Start tracking PR cycle time and defect leakage (see [metrics](../metrics.md)) before the rollout, so there is a baseline.
+- The workflow is released as tag `v1`, and callers reference that tag.
+- `quality-gate` is a required status check in branch protection. Without that, the gate is advice.
+- PR cycle time and defect leakage (see [metrics](../metrics.md)) are measured before callers switch over, so there is a baseline to compare against.

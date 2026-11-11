@@ -63,4 +63,4 @@ What would we tell another team so they avoid this?
 
 ---
 
-**Review:** the postmortem is reviewed within 5 working days of the incident, in a meeting open to anyone. Action items are checked at the next review until closed.
+**Review:** the draft is written within 3 working days and reviewed within 5 working days of the incident, in a meeting open to anyone. Action items are checked at the next review until closed.
