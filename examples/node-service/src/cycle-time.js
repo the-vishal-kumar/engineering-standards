@@ -45,3 +45,23 @@ export function summarize(prs) {
     p90Hours: percentile(hours, 90),
   };
 }
+
+/**
+ * Converts `gh pr list --json number,createdAt,mergedAt` output into the
+ * shape summarize() expects. Uses `readyAt` when the caller has added it
+ * from the timeline API, otherwise falls back to `createdAt`.
+ * @param {unknown} data parsed JSON
+ * @returns {Array<{ readyAt: string, mergedAt: string | null }>}
+ */
+export function fromGhPrList(data) {
+  if (!Array.isArray(data)) {
+    throw new TypeError("expected a JSON array from `gh pr list --json`");
+  }
+  return data.map((pr, i) => {
+    const readyAt = pr?.readyAt ?? pr?.createdAt;
+    if (typeof readyAt !== "string") {
+      throw new TypeError(`item ${i}: needs a createdAt or readyAt timestamp`);
+    }
+    return { readyAt, mergedAt: pr.mergedAt ?? null };
+  });
+}

@@ -1,6 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { cycleTimeHours, percentile, summarize } from "../src/cycle-time.js";
+import { cycleTimeHours, fromGhPrList, percentile, summarize } from "../src/cycle-time.js";
 
 test("cycleTimeHours returns hours between ready and merge", () => {
   const pr = { readyAt: "2026-01-05T09:00:00Z", mergedAt: "2026-01-06T15:00:00Z" };
@@ -35,4 +35,20 @@ test("summarize ignores unmerged PRs", () => {
     { readyAt: "2026-01-05T09:00:00Z", mergedAt: null },
   ];
   assert.deepEqual(summarize(prs), { merged: 2, medianHours: 4, p90Hours: 24 });
+});
+
+test("fromGhPrList maps gh output and prefers readyAt", () => {
+  const out = fromGhPrList([
+    { number: 1, createdAt: "2026-01-05T09:00:00Z", mergedAt: "2026-01-05T10:00:00Z" },
+    { number: 2, createdAt: "2026-01-05T09:00:00Z", readyAt: "2026-01-05T12:00:00Z", mergedAt: null },
+  ]);
+  assert.deepEqual(out, [
+    { readyAt: "2026-01-05T09:00:00Z", mergedAt: "2026-01-05T10:00:00Z" },
+    { readyAt: "2026-01-05T12:00:00Z", mergedAt: null },
+  ]);
+});
+
+test("fromGhPrList rejects input that is not gh output", () => {
+  assert.throws(() => fromGhPrList({}), TypeError);
+  assert.throws(() => fromGhPrList([{ number: 1 }]), TypeError);
 });
