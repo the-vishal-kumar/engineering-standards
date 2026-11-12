@@ -6,8 +6,8 @@ A structured loop asks every candidate for the same role the same kind of questi
 
 Write a one-page role brief and get the hiring manager and one future peer to agree on it:
 
-- **The outcomes** this person must deliver in their first 6–12 months. Outcomes, not a list of technologies.
-- **4–6 competencies** that predict those outcomes, chosen from the table below.
+- **The outcomes** this person must deliver in their first 6 to 12 months. Outcomes, not a list of technologies.
+- **4 to 6 competencies** that predict those outcomes, chosen from the table below.
 - **Level** and the one or two competencies that separate this level from the one below.
 - **Must-haves vs trainable.** Most "requirements" are trainable in a few weeks. Keep the must-have list short.
 
@@ -50,7 +50,7 @@ Each interviewer completes this **before** the debrief and before seeing anyone 
 **Candidate:**            **Role and level:**
 **Interviewer:**          **Stage:**            **Date:**
 
-| Competency | Score (1–4) | Evidence: what the candidate said or did |
+| Competency | Score (1-4) | Evidence: what the candidate said or did |
 |---|---|---|
 |            |             |                                          |
 |            |             |                                          |
@@ -88,5 +88,5 @@ Review these every quarter with the recruiters. Change one stage at a time, so y
 - Every interviewer is trained and has shadowed two interviews before running one.
 - Same questions for the same stage and level. Keep a shared question bank with scoring notes.
 - Candidates get the loop, the competencies and the format in advance. Surprises measure nerves, not skill.
-- Take-home tasks are optional and capped at 2–3 hours, or paid.
+- Take-home tasks are optional and capped at 2 to 3 hours, or paid.
 - Give every candidate who reached an onsite a decision within 3 working days of it.

@@ -10,7 +10,7 @@
 | Owning team | [team], escalation channel [#channel] |
 | Dependencies | [databases, queues, third-party APIs] |
 | Dependents | [who breaks if this breaks] |
-| DR tier | [Tier 0–3, see [DR runbook](disaster-recovery.md)] |
+| DR tier | [Tier 0-3, see [DR runbook](disaster-recovery.md)] |
 | Dashboards | [links] |
 | Logs | [link + saved query] |
 | Deploy / rollback | [pipeline link, rollback command] |
