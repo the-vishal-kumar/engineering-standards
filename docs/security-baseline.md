@@ -58,7 +58,7 @@ This is a baseline, not a compliance programme. It covers the engineering contro
 | Audit logs for authentication, admin actions and production access, kept at least 12 months | Log configuration and retention | SOC 2 CC7.2, ISO 27001 A.8.15 |
 | Application logs carry a request ID and contain no secrets, tokens or unmasked personal data | Log samples; logging library config | |
 | Alerts for suspicious access (new admin, disabled MFA, unusual data export) go to a named owner | Alert rules | SOC 2 CC7.2 |
-| Security incidents follow the [on-call severities](runbooks/on-call.md) and get a [postmortem](postmortem-template.md) | Incident records | SOC 2 CC7.3–CC7.5 |
+| Security incidents follow the [on-call severities](runbooks/on-call.md) and get a [postmortem](postmortem-template.md) | Incident records | SOC 2 CC7.3-CC7.5 |
 | A [`SECURITY.md`](../SECURITY.md) tells outside researchers how to report a vulnerability | File in each public repository | |
 
 ## 6. Vendors and new components

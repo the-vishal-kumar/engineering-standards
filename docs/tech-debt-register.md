@@ -6,7 +6,7 @@ Keep the register as a table in the repository, a spreadsheet, or issues with a 
 
 ## What goes in it
 
-Include debt that has a **cost you can describe**: incidents, slower delivery, toil, security exposure, blocked features, or money. Leave out code you simply dislike. "This module is ugly" is not an entry; "every change to invoicing takes 2–3 extra days because of the duplicated tax logic" is.
+Include debt that has a **cost you can describe**: incidents, slower delivery, toil, security exposure, blocked features, or money. Leave out code you simply dislike. "This module is ugly" is not an entry; "every change to invoicing takes 2 to 3 extra days because of the duplicated tax logic" is.
 
 ## Fields
 
@@ -17,8 +17,8 @@ Include debt that has a **cost you can describe**: incidents, slower delivery, t
 | Area / owner | The team that would do the work |
 | Type | Code, architecture, infrastructure, dependency, test, documentation, security |
 | Interest | What it costs today, with evidence: "4 of the last 10 invoicing PRs needed a follow-up fix" |
-| Impact (1–5) | How much it hurts when it bites |
-| Frequency (1–5) | How often it bites: 5 = every week, 1 = once a year or less |
+| Impact (1-5) | How much it hurts when it bites |
+| Frequency (1-5) | How often it bites: 5 = every week, 1 = once a year or less |
 | Effort (S/M/L/XL) | S ≤ 2 days, M ≤ 2 weeks, L ≤ 1 quarter for one team, XL needs an RFC |
 | Score | `Impact × Frequency ÷ effort weight` (S = 1, M = 2, L = 4, XL = 8) |
 | Trigger | A date or event that forces action: end of support, a contract, a growth threshold |
@@ -45,7 +45,7 @@ The score is a sorting aid, not an answer. A low-scoring item with a hard trigge
 
 - **Anyone can add an entry.** The owning team's lead triages new entries weekly: merge duplicates, fill in evidence, or close entries without a cost.
 - **Review monthly** with the engineering manager and product manager for the area. Re-score, move the top items into planning, and close what is paid down.
-- **Reserve capacity.** A fixed share of each team's capacity, commonly 15–25%, goes to the top of the register. A fixed share avoids a quarterly negotiation and keeps debt from waiting for a crisis. Adjust it from evidence: if incidents and cycle time are rising, raise it.
+- **Reserve capacity.** A fixed share of each team's capacity, commonly 15 to 25%, goes to the top of the register. A fixed share avoids a quarterly negotiation and keeps debt from waiting for a crisis. Adjust it from evidence: if incidents and cycle time are rising, raise it.
 - **Pay down next to features.** The cheapest time to fix debt is while working in the same code. Tie entries to the feature work that touches them.
 - **Report the trend, not the list.** For leadership, show the count of open high-score items, the capacity spent, and the delivery or incident metric each paid-down item was meant to move. See [metrics](metrics.md).
 - **"Accepted" is a valid status.** Some debt is cheaper to live with. Write down why, and the trigger that would change the answer.

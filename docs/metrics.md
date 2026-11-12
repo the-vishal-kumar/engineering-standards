@@ -1,6 +1,6 @@
 # Delivery metrics: definitions and how to measure them
 
-Track a few metrics, define them precisely, and measure them the same way every time. Look at trends over 4–8 weeks, not single weeks. Use them to find bottlenecks in the system, never to rank individuals: the moment a metric is used for performance reviews, people optimise the metric instead of the work.
+Track a few metrics, define them precisely, and measure them the same way every time. Look at trends over 4 to 8 weeks, not single weeks. Use them to find bottlenecks in the system, never to rank individuals: the moment a metric is used for performance reviews, people optimise the metric instead of the work.
 
 ## The metrics
 
@@ -27,9 +27,9 @@ You need two event streams with timestamps: **deploys** (service, commit SHA, ti
 | Metric | Calculation | Minimum data you need |
 |---|---|---|
 | Deployment frequency | Count of successful production deploys in the period, per service | One log line per deploy: service, SHA, timestamp |
-| Lead time for changes | For each deployed SHA, `deploy_time − commit_time` for every commit it includes for the first time. Report the median and p90 | Deploy SHAs plus `git log` between consecutive deploys |
+| Lead time for changes | For each deployed SHA, `deploy_time - commit_time` for every commit it includes for the first time. Report the median and p90 | Deploy SHAs plus `git log` between consecutive deploys |
 | Change failure rate | Deploys linked to an incident, rollback or hotfix ÷ all deploys | A "caused by deploy" field on incidents, and a rollback or hotfix label on deploys |
-| Failed deployment recovery time | `restored_time − detected_time` for each incident caused by a deploy | Incident start, detection and resolution times |
+| Failed deployment recovery time | `restored_time - detected_time` for each incident caused by a deploy | Incident start, detection and resolution times |
 | Deployment rework rate | Unplanned deploys made to fix a production incident ÷ all deploys | A label on deploys made in response to an incident |
 
 Practical notes:
@@ -41,7 +41,7 @@ Practical notes:
 
 ## Measurement rules
 
-- **Baseline first.** Measure for at least 4–6 weeks before changing the process. Without a baseline, any improvement claim is a guess.
+- **Baseline first.** Measure for at least 4 to 6 weeks before changing the process. Without a baseline, any improvement claim is a guess.
 - **Freeze the definition.** If you change how a metric is counted (for example, excluding draft PRs), restate the baseline with the new definition.
 - **Exclude noise explicitly** and write down what you excluded: bot PRs (dependency updates), reverts, PRs open for more than 30 days.
 - **Use medians and p90,** not averages. One PR that sat for three weeks hides the typical case in a mean.

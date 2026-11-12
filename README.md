@@ -1,7 +1,7 @@
 # engineering-standards
 
-[![ci](https://github.com/the-vishal-kumar/engineering-standards/actions/workflows/ci.yml/badge.svg)](https://github.com/the-vishal-kumar/engineering-standards/actions/workflows/ci.yml)
-[![docs](https://github.com/the-vishal-kumar/engineering-standards/actions/workflows/docs.yml/badge.svg)](https://github.com/the-vishal-kumar/engineering-standards/actions/workflows/docs.yml)
+[![ci](https://github.com/the-vishal-kumar/engineering-standards/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/the-vishal-kumar/engineering-standards/actions/workflows/ci.yml)
+[![docs](https://github.com/the-vishal-kumar/engineering-standards/actions/workflows/docs.yml/badge.svg?branch=main)](https://github.com/the-vishal-kumar/engineering-standards/actions/workflows/docs.yml)
 
 A starter kit of engineering standards for a product engineering organisation: a reusable CI quality gate, PR and issue templates, and the documents teams need to decide, ship, operate, recover and hire consistently.
 
@@ -78,12 +78,12 @@ The goal of the first week is a baseline and one pilot team, not a rollout. Each
 
 Each step should show a result before the next one starts.
 
-1. **Fix the gate's noise (weeks 2–4).** Flaky tests, a lint config nobody agrees with, a coverage threshold set too high. Keep measuring.
+1. **Fix the gate's noise (weeks 2 to 4).** Flaky tests, a lint config nobody agrees with, a coverage threshold set too high. Keep measuring.
 2. **Make the gate required.** Turn on branch protection on the pilot repository. Add the secret scan and dependency audit if they were off. Then offer the gate to the next team.
 3. **Release readiness, postmortems and on-call.** Introduce them with the next real release or incident, not as a documentation project.
 4. **Decisions.** Use the [RFC process](docs/rfc/README.md) for the next change that crosses team boundaries.
 5. **DR.** Run one restore test for the most critical system. The first test usually finds the biggest gap.
-6. **Review the metrics after 6–8 weeks** against the week 1 baseline, speed and quality side by side.
+6. **Review the metrics after 6 to 8 weeks** against the week 1 baseline, speed and quality side by side.
 
 ## Why each gate exists
 
