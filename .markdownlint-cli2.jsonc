@@ -1,0 +1,13 @@
+// markdownlint-cli2 config. Run with `scripts/check-docs.sh lint-md`.
+{
+  "config": {
+    "default": true,
+    // Prose is one sentence or paragraph per line; wrapping at 80 adds diff noise.
+    "MD013": false,
+    // PR and issue templates start at level 2 on purpose.
+    "MD041": false,
+    // Repeated headings are fine in different sections (e.g. per-scenario steps).
+    "MD024": { "siblings_only": true }
+  },
+  "ignores": ["**/node_modules/**"]
+}

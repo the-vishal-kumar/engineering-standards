@@ -27,3 +27,11 @@ jobs:
       coverage-file: coverage/lcov.info
       coverage-threshold: 80
       audit-command: npm audit --audit-level=high
+
+  actionlint:
+    name: actionlint (workflow syntax and shell)
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - run: docker run --rm -v "$PWD:/repo" -w /repo rhysd/actionlint:1.7.7 -color
