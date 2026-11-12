@@ -88,7 +88,7 @@ jobs:
           node-version: ${{ inputs.node-version }}
 
       - if: inputs.python-version != ''
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v7
         with:
           python-version: ${{ inputs.python-version }}
 
